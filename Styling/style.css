@@ -127,7 +127,7 @@ main {
   width: 527px;
   height: 527px;
   background-size: 200px;
-  background-color: rgba(178, 227, 255, 70%);
+  background-color: rgba(255, 255, 255, 70%);
   border-radius: 15px;
   border: rgba(0, 0, 0, 30%) solid 3px;
   margin: 0 60px;
@@ -138,6 +138,34 @@ main {
   grid-gap: 3px;
 }
 
+.screen-container a {
+  background-color: rgba(178, 227, 255, 70%);
+  cursor: crosshair;
+  width: 50px;
+  height: 50px;
+  margin: 0;
+}
+
+.screen-container a:hover {
+  /* background-color: rgba(178, 227, 255, 30%); */
+  background-color: rgba(178, 227, 255, 30%);
+}
+
+#grid-1 {
+  border-top-left-radius: 12px;
+}
+
+#grid-10 {
+  border-top-right-radius: 12px;
+}
+
+#grid-91 {
+  border-bottom-left-radius: 12px;
+}
+
+#grid-100 {
+  border-bottom-right-radius: 12px;
+}
 footer {
   display: flex;
   background-color: #2b2d42;
