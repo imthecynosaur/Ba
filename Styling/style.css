@@ -46,18 +46,18 @@ header {
   align-items: center;
 }
 
-.nav-bar_btns a {
+a {
   margin: 1rem;
   color: #edf2f4;
   font-size: 1.3rem;
-  text-decoration-line: none;
+  text-decoration: none;
 }
 
 .nav-bar_btns a:last-of-type {
   margin-right: 40px;
 }
 
-.nav-bar_btns a:hover {
+a:hover {
   font-size: 1.6rem;
   color: #ffdb56;
 }
@@ -97,13 +97,16 @@ main {
 }
 
 .turn-teller {
+  display: flex;
   background-color: #4c334d;
   border: #2b2d42 solid 3px;
   border-radius: 10px;
   width: 150px;
-  height: 50px;
-  text-align: center;
-  vertical-align: baseline;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center;
+  vertical-align: bottom; */
 }
 
 .turn-teller h3 {
@@ -136,10 +139,17 @@ main {
 }
 
 footer {
-  /* display: flex; */
+  display: flex;
   background-color: #2b2d42;
   height: 3rem;
   width: 100vw;
-  /* align-items: center;
-  justify-content: space-between; */
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-item {
+  text-decoration: none;
+  margin: 0 1rem;
+  color: #ffdb56;
+  font-size: 1.2rem;
 }
