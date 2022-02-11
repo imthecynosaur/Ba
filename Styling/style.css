@@ -32,10 +32,19 @@ header {
   z-index: 1;
 }
 
+h3 {
+  font-family: "Redressed", cursive;
+  font-size: x-large;
+  margin-top: 0;
+}
+
 .arrange-section {
   position: fixed;
-  width: 70vw;
-  height: 80vh;
+  display: flex;
+  width: 50vw;
+  /* height: 85vh; */
+  flex-direction: column;
+  padding: 10px;
   margin-top: 10px;
   background-color: #edf2f4;
   border: #2b2d42 solid 2px;
@@ -46,35 +55,98 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 65%;
+  /* height: 65%; */
 }
 
 .map {
   display: grid;
   background-color: rgba(178, 227, 255, 70%);
   border-radius: 15px;
-  grid-template-columns: repeat(10, 30px);
-  grid-template-rows: repeat(10, 30px);
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+}
+
+.map a {
+  display: flex;
+  background-color: rgba(178, 227, 255, 70%);
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  filter: blur(0px);
+  justify-content: center;
+  align-items: center;
+  border: white solid 0.3px;
+}
+
+.map a:hover,
+.highlight {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.control-btns {
+  display: flex;
+  justify-content: center;
+}
+
+#rotate-btn {
+  background-image: url("../Assets/rotate.png");
+  transform: scale(0.5);
+  /* width: 32px; */
+  height: 32px;
+  /* display: block; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.ships {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.shipp {
+  width: 30px;
+  height: 90px;
+  border-radius: 25px;
+  background-color: #2b2d42;
+  margin: 0 30px;
+}
+
+.shipp:hover {
+  background-color: #8d99ae;
+  cursor: pointer;
+}
+
+#ship-1 {
+  height: 60px;
+  /* display: none; */
+}
+
+#ship-4 {
+  height: 120px;
 }
 
 .arrange-btns {
-  position: fixed;
-  top: 90%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .arrange-btns button {
   margin: 0 10px;
   width: auto;
   height: auto;
-  font-size: 24px;
+  font-family: "Redressed", cursive;
+  font-size: 22px;
   /* text-align: center; */
   color: #ffdb56;
-  background-color: #2b2d42;
+  background-color: #4c334d;
   border-radius: 10px;
 }
 
 .arrange-btns button:hover {
-  background-color: #4c334d;
+  background-color: #1d3958;
   cursor: pointer;
 }
 
@@ -231,6 +303,7 @@ div .ship {
   background-color: #2b2d42;
   border-left: 0;
   border-right: 0;
+  border-radius: 0;
 }
 
 div .ship-end {
