@@ -86,23 +86,38 @@ h3 {
 .control-btns {
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin: 5px;
 }
 
 #rotate-btn {
-  background-image: url("../Assets/rotate.png");
-  transform: scale(0.5);
-  /* width: 32px; */
+  transform: scale(0.8);
+  width: 32px;
   height: 32px;
-  /* display: block; */
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  margin: 0 8px;
+  filter: brightness(0.2);
+}
+
+#rotate-btn.active {
+  filter: brightness(1.2);
+  cursor: pointer;
+}
+
+#delete-btn {
+  width: 32px;
+  height: 32px;
+  margin: 0 8px;
+}
+
+#delete-btn.active {
+  filter: contrast(1.5);
+  cursor: pointer;
 }
 
 .ships {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .shipp {
@@ -113,8 +128,9 @@ h3 {
   margin: 0 30px;
 }
 
-.shipp:hover {
-  background-color: #8d99ae;
+.shipp:hover,
+.ship-highlight {
+  background-color: #8d99ae !important;
   cursor: pointer;
 }
 
