@@ -54,6 +54,10 @@ const deleteFunc = function() {
     shipOnMap.forEach(ship => {
         ship.removeAttribute('class');
     })
+
+    rotateBtn.classList.remove('active');
+    deleteBtn.classList.remove('active');
+
 }
 
 
