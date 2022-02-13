@@ -125,8 +125,41 @@ const drawFunc = function(gridId, shipID) {
 
 
 
-const rotateFunc = function() {
-    console.log('rotated');
+const rotateFunc = function(direction, lenght) {
+    // console.log(direction);
+    // console.log(lenght);
+    // console.log(this);
+    if (!(deleteBtn.classList.contains('active'))){
+        return;
+    }
+
+    console.log(this);
+
+    if (direction == 'right') {
+        if (this.classList[0].match(/vertical/)) {
+            if ((parseInt(this.id.match(/\d+/)) % 10 ) >= lenght ) {
+                for (let i=1; i < lenght; i++){
+                    if (document.querySelector(`#grid-${parseInt(this.id.match(/\d+/))-i}`).classList.length > 0){
+                        console.log('loaded with shit');
+                        return;
+                    }
+                }
+                const shipID = this.classList[1];
+                map.querySelectorAll(`.${shipID}`).forEach(grid => {
+                    grid.removeAttribute('class');
+                });
+
+                map.querySelector(`#${this.id}`).classList.add('ship-end');
+                for (let i=0; i<(lenght-1); i++){
+                    map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) - i)}`).classList.add('ship');
+                }
+                map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) - (lenght-1))}`).classList.add('ship-start');
+            } else {
+                console.log("can't be rotated");
+                console.log(this);
+            }
+        }
+    }
 }
 
 const deleteFunc = function() {
@@ -139,15 +172,16 @@ const deleteFunc = function() {
         ship.removeAttribute('class');
     })
 
-    rotateBtn.classList.remove('active');
+    rotateRightBtn.classList.remove('active');
     deleteBtn.classList.remove('active');
 }
 
 
 
 
-const rotateBtn = document.querySelector('#rotate-btn');
+const rotateRightBtn = document.querySelector('#rotate-right-btn');
 const deleteBtn = document.querySelector('#delete-btn');
+const rotateLeftBtn = document.querySelector('#rotate-left-btn');
 
 
 const map = document.querySelector('.map');
@@ -209,17 +243,21 @@ for (let i = 1; i <= 100; i++) {
         })
 
         if (map.querySelectorAll('.ship-highlight').length > 0 && map.querySelectorAll('.ship-highlight').length < 5){
-            rotateBtn.classList.add('active');
+            rotateRightBtn.classList.add('active');
             deleteBtn.classList.add('active');
+            rotateLeftBtn.classList.add('active');
 
-            rotateBtn.addEventListener('click', rotateFunc)
-            deleteBtn.addEventListener('click', deleteFunc)
+            rotateRightBtn.addEventListener('click', rotateFunc.bind(map.querySelector('.ship-highlight'), 'right', map.querySelectorAll('.ship-highlight').length));
+            deleteBtn.addEventListener('click', deleteFunc);
+            rotateLeftBtn.addEventListener('click', rotateFunc.bind(map.querySelector('.ship-highlight'), 'left', map.querySelectorAll('.ship-highlight').length));
         } else {
-            rotateBtn.classList.remove('active');
+            rotateRightBtn.classList.remove('active');
             deleteBtn.classList.remove('active');
+            rotateLeftBtn.classList.remove('active');
 
-            rotateBtn.removeEventListener('click', rotateFunc);
+            rotateRightBtn.removeEventListener('click', rotateFunc);
             deleteBtn.removeEventListener('click', deleteFunc);
+            rotateLeftBtn.removeEventListener('click', rotateFunc);
         }
     })
 

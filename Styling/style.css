@@ -90,7 +90,7 @@ h3 {
   margin: 5px;
 }
 
-#rotate-btn {
+.rotate-btn {
   transform: scale(0.8);
   width: 32px;
   height: 32px;
@@ -98,9 +98,13 @@ h3 {
   filter: brightness(0.2);
 }
 
-#rotate-btn.active {
+.rotate-btn.active {
   filter: brightness(1.2);
   cursor: pointer;
+}
+
+#rotate-left-btn {
+  transform: rotateY(180deg) scale(0.8);
 }
 
 #delete-btn {
