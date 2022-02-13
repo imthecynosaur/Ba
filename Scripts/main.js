@@ -40,6 +40,82 @@ gridElemnts.forEach((element) => {
 
 /*---------------------------------------------------------------------*/
 
+const drawFunc = function(gridId, shipNumber) {
+    const regex = /\d+/;
+    const gridNumber = parseInt(gridId.match(regex));
+    const ship = document.querySelector(`#number-${shipNumber}`);
+
+    const elements = map.querySelectorAll('a');
+
+    switch (shipNumber) {
+        case '1':
+            if (gridNumber <= 90) {
+                document.querySelector(`#grid-${gridNumber}`).classList.add('ship-start-vertical', 'number-1');
+                document.querySelector(`#grid-${gridNumber+10}`).classList.add('ship-end-vertical', 'number-1');
+                ship.style.display = 'none';
+            }
+            break;
+
+        case '2':
+            if (gridNumber <= 80) {
+            document.querySelector(`#grid-${gridNumber}`).classList.add('ship-start-vertical', 'number-2');
+            document.querySelector(`#grid-${gridNumber+10}`).classList.add('ship-vertical', 'number-2');
+            document.querySelector(`#grid-${gridNumber+20}`).classList.add('ship-end-vertical', 'number-2');
+            ship.style.display = 'none';
+            }
+            break;
+
+        case '3':
+            if (gridNumber <= 80) {
+                document.querySelector(`#grid-${gridNumber}`).classList.add('ship-start-vertical', 'number-3');
+                document.querySelector(`#grid-${gridNumber+10}`).classList.add('ship-vertical', 'number-3');
+                document.querySelector(`#grid-${gridNumber+20}`).classList.add('ship-end-vertical', 'number-3');
+                ship.style.display = 'none';
+            }
+            break;
+            
+        case '4':
+            if (gridNumber <= 70) {
+                document.querySelector(`#grid-${gridNumber}`).classList.add('ship-start-vertical', 'number-4');
+                document.querySelector(`#grid-${gridNumber+10}`).classList.add('ship-vertical', 'number-4');
+                document.querySelector(`#grid-${gridNumber+20}`).classList.add('ship-vertical', 'number-4');
+                document.querySelector(`#grid-${gridNumber+30}`).classList.add('ship-end-vertical', 'number-4');
+                ship.style.display = 'none';
+            }
+            break;
+            
+
+        default:
+            break;
+
+        
+    }
+
+    elements.forEach(element => {
+        if (element.classList.length >= 3) {
+            const regex = /number-/;
+            const shittyships = [];
+            element.classList.forEach(clas => {
+                if (clas.match(regex)){
+                    shittyships.push(clas);
+                }
+            })
+            console.log(shittyships);
+            
+            shittyships.forEach(shittyship => {
+                map.querySelectorAll(`.${shittyship}`).forEach(grid => {
+                    grid.removeAttribute('class');
+                })
+            })
+
+            document.querySelector(`#${shittyships[0]}`).style.display = 'block';
+        }
+    })
+
+
+}
+
+
 
 const rotateFunc = function() {
     console.log('rotated');
@@ -57,12 +133,7 @@ const deleteFunc = function() {
 
     rotateBtn.classList.remove('active');
     deleteBtn.classList.remove('active');
-
 }
-
-
-
-
 
 
 
@@ -90,27 +161,29 @@ for (let i = 1; i <= 100; i++) {
     gridEl.addEventListener('drop', event => {
         event.preventDefault();
         gridEl.classList.remove('highlight');
-        const ship = document.querySelector(`#number-${event.dataTransfer.getData('text/plain')}`)
+        
+        drawFunc(gridEl.id, event.dataTransfer.getData('text/plain'));
 
-        if (event.dataTransfer.getData('text/plain') == '1') {
-            gridEl.classList.add('ship-start', 'number-1');
-            gridEl.nextSibling.classList.add('ship-end', 'number-1');
-        } else if (event.dataTransfer.getData('text/plain') == '4') {
-            gridEl.classList.add('ship', 'number-4');
-            gridEl.previousSibling.classList.add('ship', 'number-4');
-            gridEl.previousSibling.previousSibling.classList.add('ship-start', 'number-4');
-            gridEl.nextSibling.classList.add('ship-end', 'number-4'); 
-        } else if (event.dataTransfer.getData('text/plain') == '3') {
-            gridEl.classList.add('ship', 'number-3');
-            gridEl.previousSibling.classList.add('ship-start', 'number-3');
-            gridEl.nextSibling.classList.add('ship-end', 'number-3');
-        } else {
-            gridEl.classList.add('ship', 'number-2');
-            gridEl.previousSibling.classList.add('ship-start', 'number-2');
-            gridEl.nextSibling.classList.add('ship-end', 'number-2');
-        }
 
-        ship.style.display = 'none';
+        // if (event.dataTransfer.getData('text/plain') == '1') {
+        //     gridEl.classList.add('ship-start', 'number-1');
+        //     gridEl.nextSibling.classList.add('ship-end', 'number-1');
+        // } else if (event.dataTransfer.getData('text/plain') == '4') {
+        //     gridEl.classList.add('ship', 'number-4');
+        //     gridEl.previousSibling.classList.add('ship', 'number-4');
+        //     gridEl.previousSibling.previousSibling.classList.add('ship-start', 'number-4');
+        //     gridEl.nextSibling.classList.add('ship-end', 'number-4'); 
+        // } else if (event.dataTransfer.getData('text/plain') == '3') {
+        //     gridEl.classList.add('ship', 'number-3');
+        //     gridEl.previousSibling.classList.add('ship-start', 'number-3');
+        //     gridEl.nextSibling.classList.add('ship-end', 'number-3');
+        // } else {
+        //     gridEl.classList.add('ship', 'number-2');
+        //     gridEl.previousSibling.classList.add('ship-start', 'number-2');
+        //     gridEl.nextSibling.classList.add('ship-end', 'number-2');
+        // }
+
+
     })
 
 
