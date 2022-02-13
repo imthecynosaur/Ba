@@ -90,30 +90,34 @@ const drawFunc = function(gridId, shipID) {
 
         
     }
+    const shipRegex = /number-/;
+    const shittyships = [];
 
     elements.forEach(element => {
         if (element.classList.length >= 3) {
-            const regex = /number-/;
-            const shittyships = [];
             element.classList.forEach(clas => {
-                if (clas.match(regex)){
+                if (clas.match(shipRegex)){
                     shittyships.push(clas);
                 }
             })
-            console.log(shittyships);
-
-            const position = map.querySelector(`.${shittyships[1]}`).id;
-            shittyships.forEach(shittyship => {
-                map.querySelectorAll(`.${shittyship}`).forEach(grid => {
-                    grid.removeAttribute('class');
-                })
-            })
-            
-            document.querySelector(`#${shittyships[0]}`).style.display = 'block';
-            drawFunc(position, shittyships[1]);
         }
     })
 
+
+    if (shittyships.length > 0) {
+        const newShipPosition = map.querySelector(`.${shittyships[1]}`).id;
+        shittyships.forEach(shittyship => {
+            map.querySelectorAll(`.${shittyship}`).forEach(grid => {
+                grid.removeAttribute('class');
+            })
+        })
+        shittyships.forEach(ship => {
+            if (ship != shittyships[1]) {
+                document.querySelector(`#${ship}`).style.display = 'block';
+            }
+        })
+        drawFunc(newShipPosition, shittyships[1]);
+    } 
 
 }
 
