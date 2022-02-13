@@ -38,7 +38,7 @@ gridElemnts.forEach((element) => {
 
 
 
-/*---------------------------------------------------------------------*/
+/*---------------------------------DRAW-FUNCTION--------------------------------------*/
 
 const drawFunc = function(gridId, shipID) {
     const regex = /\d+/;
@@ -121,6 +121,8 @@ const drawFunc = function(gridId, shipID) {
 
 }
 
+/*-------------------------------DRAW-FUNCTION---------------------------*/
+
 
 
 const rotateFunc = function() {
@@ -195,13 +197,16 @@ for (let i = 1; i <= 100; i++) {
 
 
     gridEl.addEventListener('click', () => {
-        if (gridEl.classList.contains('ship') || gridEl.classList.contains('ship-end') || gridEl.classList.contains('ship-start')){
-            const shipID = gridEl.classList[1];
-            const shiplist = map.querySelectorAll(`.${shipID}`);
-            shiplist.forEach(ship => {
-                ship.classList.toggle('ship-highlight');
-            })
-        }
+        const shipRegex = /number-/;
+        gridEl.classList.forEach(clas => {
+            if (clas.match(shipRegex)) {
+                const shipID = gridEl.classList[1];
+                const shiplist = map.querySelectorAll(`.${shipID}`);
+                shiplist.forEach(ship => {
+                    ship.classList.toggle('ship-highlight');
+                    })
+            }
+        })
 
         if (map.querySelectorAll('.ship-highlight').length > 0 && map.querySelectorAll('.ship-highlight').length < 5){
             rotateBtn.classList.add('active');
