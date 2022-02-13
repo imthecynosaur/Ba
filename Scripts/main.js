@@ -40,15 +40,15 @@ gridElemnts.forEach((element) => {
 
 /*---------------------------------------------------------------------*/
 
-const drawFunc = function(gridId, shipNumber) {
+const drawFunc = function(gridId, shipID) {
     const regex = /\d+/;
     const gridNumber = parseInt(gridId.match(regex));
-    const ship = document.querySelector(`#number-${shipNumber}`);
+    const ship = document.querySelector(`#${shipID}`);
 
     const elements = map.querySelectorAll('a');
 
-    switch (shipNumber) {
-        case '1':
+    switch (shipID) {
+        case 'number-1':
             if (gridNumber <= 90) {
                 document.querySelector(`#grid-${gridNumber}`).classList.add('ship-start-vertical', 'number-1');
                 document.querySelector(`#grid-${gridNumber+10}`).classList.add('ship-end-vertical', 'number-1');
@@ -56,7 +56,7 @@ const drawFunc = function(gridId, shipNumber) {
             }
             break;
 
-        case '2':
+        case 'number-2':
             if (gridNumber <= 80) {
             document.querySelector(`#grid-${gridNumber}`).classList.add('ship-start-vertical', 'number-2');
             document.querySelector(`#grid-${gridNumber+10}`).classList.add('ship-vertical', 'number-2');
@@ -65,7 +65,7 @@ const drawFunc = function(gridId, shipNumber) {
             }
             break;
 
-        case '3':
+        case 'number-3':
             if (gridNumber <= 80) {
                 document.querySelector(`#grid-${gridNumber}`).classList.add('ship-start-vertical', 'number-3');
                 document.querySelector(`#grid-${gridNumber+10}`).classList.add('ship-vertical', 'number-3');
@@ -74,7 +74,7 @@ const drawFunc = function(gridId, shipNumber) {
             }
             break;
             
-        case '4':
+        case 'number-4':
             if (gridNumber <= 70) {
                 document.querySelector(`#grid-${gridNumber}`).classList.add('ship-start-vertical', 'number-4');
                 document.querySelector(`#grid-${gridNumber+10}`).classList.add('ship-vertical', 'number-4');
@@ -101,14 +101,16 @@ const drawFunc = function(gridId, shipNumber) {
                 }
             })
             console.log(shittyships);
-            
+
+            const position = map.querySelector(`.${shittyships[1]}`).id;
             shittyships.forEach(shittyship => {
                 map.querySelectorAll(`.${shittyship}`).forEach(grid => {
                     grid.removeAttribute('class');
                 })
             })
-
+            
             document.querySelector(`#${shittyships[0]}`).style.display = 'block';
+            drawFunc(position, shittyships[1]);
         }
     })
 
@@ -190,8 +192,8 @@ for (let i = 1; i <= 100; i++) {
 
     gridEl.addEventListener('click', () => {
         if (gridEl.classList.contains('ship') || gridEl.classList.contains('ship-end') || gridEl.classList.contains('ship-start')){
-            const shipNumber = gridEl.classList[1];
-            const shiplist = map.querySelectorAll(`.${shipNumber}`);
+            const shipID = gridEl.classList[1];
+            const shiplist = map.querySelectorAll(`.${shipID}`);
             shiplist.forEach(ship => {
                 ship.classList.toggle('ship-highlight');
             })
@@ -221,17 +223,7 @@ for (let i = 1; i <= 100; i++) {
 const ships = document.querySelectorAll('.shipp');
 ships.forEach(ship => {
     ship.addEventListener('dragstart', event => {
-        if (ship.id == 'number-1') {
-            event.dataTransfer.setData('text/plain', '1');
-        } else if (ship.id == 'number-2') {
-            event.dataTransfer.setData('text/plain', '2');
-        } else if (ship.id == 'number-3') {
-            event.dataTransfer.setData('text/plain', '3');
-        } else {
-            event.dataTransfer.setData('text/plain', '4');
-        }
-
-        
+        event.dataTransfer.setData('text/plain', `${ship.id}`);
     })
 })
 
