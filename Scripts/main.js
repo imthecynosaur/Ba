@@ -94,7 +94,7 @@ const drawFunc = function(gridId, shipID) {
     const shittyships = [];
 
     elements.forEach(element => {
-        if (element.classList.length >= 3) {
+        if (element.classList.length > 3) {
             element.classList.forEach(clas => {
                 if (clas.match(shipRegex)){
                     shittyships.push(clas);
@@ -125,19 +125,26 @@ const drawFunc = function(gridId, shipID) {
 
 
 
+const map = document.querySelector('.map');
+
+const rotateRightBtn = document.querySelector('#rotate-right-btn');
+const deleteBtn = document.querySelector('#delete-btn');
+const rotateLeftBtn = document.querySelector('#rotate-left-btn');
+
+
+/*-------------------------------ROTATE-FUNCTION---------------------------*/
+
+
 const rotateFunc = function(direction, lenght) {
-    // console.log(direction);
-    // console.log(lenght);
-    // console.log(this);
-    if (!(deleteBtn.classList.contains('active'))){
-        return;
-    }
+
 
     console.log(this);
 
     if (direction == 'right') {
-        if (this.classList[0].match(/vertical/)) {
-            if ((parseInt(this.id.match(/\d+/)) % 10 ) >= lenght ) {
+
+
+        if (this.classList[0].match(/start-vertical/)) {
+            if ((parseInt(this.id.match(/\d+/)) % 10 ) >= lenght || (parseInt(this.id.match(/\d+/)) % 10 ) == 0) {
                 for (let i=1; i < lenght; i++){
                     if (document.querySelector(`#grid-${parseInt(this.id.match(/\d+/))-i}`).classList.length > 0){
                         console.log('loaded with shit');
@@ -149,18 +156,107 @@ const rotateFunc = function(direction, lenght) {
                     grid.removeAttribute('class');
                 });
 
-                map.querySelector(`#${this.id}`).classList.add('ship-end');
-                for (let i=0; i<(lenght-1); i++){
-                    map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) - i)}`).classList.add('ship');
+                map.querySelector(`#${this.id}`).classList.add('ship-end', `${shipID}`, 'ship-highlight');
+                for (let i=1; i<lenght-1; i++){
+                    map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) - i)}`).classList.add('ship', `${shipID}`, 'ship-highlight');
                 }
-                map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) - (lenght-1))}`).classList.add('ship-start');
+                map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) - (lenght-1))}`).classList.add('ship-start', `${shipID}`, 'ship-highlight');
             } else {
                 console.log("can't be rotated");
-                console.log(this);
+                
+            }
+
+
+        }  else if (this.classList[0].match(/end/)){
+            if ((parseInt(this.id.match(/\d+/)) >= ((lenght - 1) * 10) )) {
+                for (let i=1; i < lenght; i++){
+                    if (document.querySelector(`#grid-${parseInt(this.id.match(/\d+/)) - (i * 10)}`).classList.length > 0){
+                        console.log('loaded with shit');
+                        return;
+                    }
+                }
+                const shipID = this.classList[1];
+                map.querySelectorAll(`.${shipID}`).forEach(grid => {
+                    grid.removeAttribute('class');
+                });
+
+                map.querySelector(`#${this.id}`).classList.add('ship-end-vertical', `${shipID}`, 'ship-highlight');
+                for (let i=1; i<lenght-1; i++){
+                    map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) - (i * 10))}`).classList.add('ship-vertical', `${shipID}`, 'ship-highlight');
+                }
+                map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) - (lenght-1) * 10)}`).classList.add('ship-start-vertical', `${shipID}`, 'ship-highlight');
+            } else {
+                console.log("can't be rotated");
+            }
+        } 
+    }
+    
+
+
+    
+    else {
+        if (this.classList[0].match(/end-vertical/)) {
+            if ((parseInt(this.id.match(/\d+/)) % 10 ) == 0) {
+                console.log('row shit');
+            }
+             else if (Math.floor(parseInt(this.id.match(/\d+/)) / 10 ) == Math.floor((parseInt(this.id.match(/\d+/)) + lenght - 1) / 10) || (parseInt(this.id.match(/\d+/)) + lenght - 1) % 10 == 0 ) {
+                for (let i=1; i < lenght; i++){
+                    if (document.querySelector(`#grid-${parseInt(this.id.match(/\d+/))+i}`).classList.length > 0){
+                        console.log('loaded with shit');
+                        return;
+                    }
+                }
+                const shipID = this.classList[1];
+                map.querySelectorAll(`.${shipID}`).forEach(grid => {
+                    grid.removeAttribute('class');
+                });
+
+                map.querySelector(`#${this.id}`).classList.add('ship-start', `${shipID}`, 'ship-highlight');
+                for (let i=1; i<lenght-1; i++){
+                    map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) + i)}`).classList.add('ship', `${shipID}`, 'ship-highlight');
+                }
+                map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) + (lenght-1))}`).classList.add('ship-end', `${shipID}`, 'ship-highlight');
+
+            } else {
+                console.log('border shit');
+            }
+
+
+
+        } else if (this.classList[0].match(/start/)) {
+            if ((parseInt(this.id.match(/\d+/)) + (lenght - 1) * 10) <= 100) {
+                for (let i=1; i < lenght; i++){
+                    if (document.querySelector(`#grid-${parseInt(this.id.match(/\d+/)) + (i * 10)}`).classList.length > 0){
+                        console.log('loaded with shit');
+                        return;
+                    }
+                }
+                const shipID = this.classList[1];
+                map.querySelectorAll(`.${shipID}`).forEach(grid => {
+                    grid.removeAttribute('class');
+                });
+                map.querySelector(`#${this.id}`).classList.add('ship-start-vertical', `${shipID}`, 'ship-highlight');
+                for (let i=1; i<lenght-1; i++){
+                    map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) + (i * 10))}`).classList.add('ship-vertical', `${shipID}`, 'ship-highlight');
+                }
+                map.querySelector(`#grid-${(parseInt(this.id.match(/\d+/)) + (lenght-1) * 10)}`).classList.add('ship-end-vertical', `${shipID}`, 'ship-highlight');
+
+
+            } else {
+                console.log("can't be rotated");
             }
         }
     }
 }
+
+
+
+
+/*-------------------------------ROTATE-FUNCTION---------------------------*/
+
+
+
+
 
 const deleteFunc = function() {
     console.log('deleted');
@@ -174,17 +270,11 @@ const deleteFunc = function() {
 
     rotateRightBtn.classList.remove('active');
     deleteBtn.classList.remove('active');
+    rotateLeftBtn.classList.remove('active');
 }
 
 
 
-
-const rotateRightBtn = document.querySelector('#rotate-right-btn');
-const deleteBtn = document.querySelector('#delete-btn');
-const rotateLeftBtn = document.querySelector('#rotate-left-btn');
-
-
-const map = document.querySelector('.map');
 
 for (let i = 1; i <= 100; i++) {
     const gridEl = document.createElement('a');
@@ -205,27 +295,6 @@ for (let i = 1; i <= 100; i++) {
         gridEl.classList.remove('highlight');
         
         drawFunc(gridEl.id, event.dataTransfer.getData('text/plain'));
-
-
-        // if (event.dataTransfer.getData('text/plain') == '1') {
-        //     gridEl.classList.add('ship-start', 'number-1');
-        //     gridEl.nextSibling.classList.add('ship-end', 'number-1');
-        // } else if (event.dataTransfer.getData('text/plain') == '4') {
-        //     gridEl.classList.add('ship', 'number-4');
-        //     gridEl.previousSibling.classList.add('ship', 'number-4');
-        //     gridEl.previousSibling.previousSibling.classList.add('ship-start', 'number-4');
-        //     gridEl.nextSibling.classList.add('ship-end', 'number-4'); 
-        // } else if (event.dataTransfer.getData('text/plain') == '3') {
-        //     gridEl.classList.add('ship', 'number-3');
-        //     gridEl.previousSibling.classList.add('ship-start', 'number-3');
-        //     gridEl.nextSibling.classList.add('ship-end', 'number-3');
-        // } else {
-        //     gridEl.classList.add('ship', 'number-2');
-        //     gridEl.previousSibling.classList.add('ship-start', 'number-2');
-        //     gridEl.nextSibling.classList.add('ship-end', 'number-2');
-        // }
-
-
     })
 
 
@@ -243,21 +312,29 @@ for (let i = 1; i <= 100; i++) {
         })
 
         if (map.querySelectorAll('.ship-highlight').length > 0 && map.querySelectorAll('.ship-highlight').length < 5){
+            const rotateRightBtn = document.querySelector('#rotate-right-btn');
+            const deleteBtn = document.querySelector('#delete-btn');
+            const rotateLeftBtn = document.querySelector('#rotate-left-btn');
+
             rotateRightBtn.classList.add('active');
             deleteBtn.classList.add('active');
             rotateLeftBtn.classList.add('active');
 
             rotateRightBtn.addEventListener('click', rotateFunc.bind(map.querySelector('.ship-highlight'), 'right', map.querySelectorAll('.ship-highlight').length));
             deleteBtn.addEventListener('click', deleteFunc);
-            rotateLeftBtn.addEventListener('click', rotateFunc.bind(map.querySelector('.ship-highlight'), 'left', map.querySelectorAll('.ship-highlight').length));
+            rotateLeftBtn.addEventListener('click', rotateFunc.bind(map.querySelectorAll('.ship-highlight')[map.querySelectorAll('.ship-highlight').length-1], 'left', map.querySelectorAll('.ship-highlight').length));
         } else {
+            const rotateRightBtn = document.querySelector('#rotate-right-btn');
+            const deleteBtn = document.querySelector('#delete-btn');
+            const rotateLeftBtn = document.querySelector('#rotate-left-btn');
+
             rotateRightBtn.classList.remove('active');
             deleteBtn.classList.remove('active');
             rotateLeftBtn.classList.remove('active');
 
-            rotateRightBtn.removeEventListener('click', rotateFunc);
-            deleteBtn.removeEventListener('click', deleteFunc);
-            rotateLeftBtn.removeEventListener('click', rotateFunc);
+            rotateRightBtn.replaceWith(rotateRightBtn.cloneNode(true));
+            deleteBtn.replaceWith(deleteBtn.cloneNode(true));
+            rotateLeftBtn.replaceWith(rotateLeftBtn.cloneNode(true));
         }
     })
 
