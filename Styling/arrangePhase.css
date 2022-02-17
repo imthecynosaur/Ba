@@ -1,0 +1,133 @@
+.arrange-phase {
+  position: fixed;
+  top: 0;
+  display: flex;
+  background-color: rgba(19, 19, 19, 0.671);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  /* align-items: center; */
+  z-index: 10;
+}
+
+h3 {
+  font-family: "Redressed", cursive;
+  font-size: x-large;
+  margin-top: 0;
+}
+
+.arrange-section {
+  position: fixed;
+  display: flex;
+  width: 50vw;
+  /* height: 85vh; */
+  flex-direction: column;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #edf2f4;
+  border: #2b2d42 solid 2px;
+  border-radius: 15px;
+}
+
+.map-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#arrange-map {
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+}
+
+#arrange-map grid {
+  width: 40px;
+  height: 40px;
+}
+
+.control-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.rotate-btn {
+  transform: scale(0.8);
+  width: 32px;
+  height: 32px;
+  margin: 0 8px;
+  filter: brightness(0.2);
+}
+
+.rotate-btn.active {
+  filter: brightness(1.2);
+  cursor: pointer;
+}
+
+#rotate-left-btn {
+  transform: rotateY(180deg) rotateX(180deg) scale(0.8);
+}
+
+#delete-btn {
+  width: 32px;
+  height: 32px;
+  margin: 0 8px;
+}
+
+#delete-btn.active {
+  filter: contrast(1.5);
+  cursor: pointer;
+}
+
+.ships {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.shipp {
+  width: 30px;
+  height: 90px;
+  border-radius: 25px;
+  background-color: #2b2d42;
+  margin: 0 30px;
+}
+
+.shipp:hover,
+.ship-highlight {
+  background-color: #8d99ae !important;
+  cursor: pointer;
+}
+
+#number-1 {
+  height: 60px;
+}
+
+#number-4 {
+  height: 120px;
+}
+
+.arrange-btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.arrange-btns button {
+  display: flex;
+  margin: 0 10px;
+  width: auto;
+  height: fit-content;
+  font-family: "Redressed", cursive;
+  font-size: 22px;
+  /* text-align: center; */
+  color: #ffdb56;
+  background-color: #4c334d;
+  border-radius: 10px;
+}
+
+.arrange-btns button:hover {
+  background-color: #1d3958;
+  cursor: pointer;
+}

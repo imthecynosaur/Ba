@@ -6,34 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>BattleShip</title>
     <link rel="icon" type="image/x-icon" href="Assets/compass.png">
-    <link rel="stylesheet" href="Styling/style.css" />
-    <script src="Scripts/main.js" defer></script>
+    <link rel="stylesheet" href="./Styling/shared.css" />
+    <link rel="stylesheet" href="./Styling/mainGamePage.css" />
+    <link rel="stylesheet" href="./Styling/arrangePhase.css" />
+    <!-- <script src="Scripts/main.js" defer></script> -->
+    <script src="./Scripts/gameManager.js" defer type="module"></script>
+    <script src="./Scripts/arrangePhase.js" defer type="module"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet">
-</head>
-  <template class="arrange-phase">
-    <div class="arrange-section">
-      <section class="map-section">
-        <h3>Please place your ships on the map</h3>
-        <div class="map"></div>
-      </section>
-      <div class="control-btns">
-        <img src="./Assets/rotate.png" alt="rotate the ship" id="rotate-right-btn" class="rotate-btn">
-        <img src="./Assets/delete.png" alt="remove the ship" id="delete-btn">
-        <img src="./Assets/rotate.png" alt="rotate the ship" id="rotate-left-btn" class="rotate-btn">
-      </div>
-      <div class="ships">
-        <div class="shipp" id="number-1" draggable="true"></div>
-        <div class="shipp" id="number-2" draggable="true"></div>
-        <div class="shipp" id="number-3" draggable="true"></div>
-        <div class="shipp" id="number-4" draggable="true"></div>
-      </div>
-      <div class="arrange-btns">
-        <button id="cancel">Cancel</button>
-        <button id="start">Start</button>
-      </div>
-    </div> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet">
+  </head>
+  <template>
+    <div class="arrange-phase">
+      <div class="arrange-section">
+        <section class="map-section">
+          <h3>Place your ships on the map</h3>
+          <div class="map" id="arrange-map"></div>
+        </section>
+        <div class="control-btns">
+          <img src="./Assets/rotate.png" alt="rotate the ship" id="rotate-right-btn" class="rotate-btn">
+          <img src="./Assets/delete.png" alt="remove the ship" id="delete-btn">
+          <img src="./Assets/rotate.png" alt="rotate the ship" id="rotate-left-btn" class="rotate-btn">
+        </div>
+        <div class="ships">
+          <div class="shipp" id="number-1" draggable="true"></div>
+          <div class="shipp" id="number-2" draggable="true"></div>
+          <div class="shipp" id="number-3" draggable="true"></div>
+          <div class="shipp" id="number-4" draggable="true"></div>
+        </div>
+        <div class="arrange-btns">
+          <button id="cancel">Cancel</button>
+          <button id="start">Start</button>
+        </div>
+      </div> 
+    </div>
   </template>
   <body>
     <header>
@@ -54,9 +60,8 @@
           <h3>Cynosaur's Turn</h3>
         </section>
         <div class="screen-container">
-          <div class="screen-1">
-          </div>
-          <div class="screen-2"></div>
+          <div class="map" id="screen-1"></div>
+          <div class="map" id="screen-2"></div>
         </div>
       </div>
     </main>

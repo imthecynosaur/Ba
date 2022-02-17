@@ -1,0 +1,126 @@
+.main-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.turn-teller {
+  display: flex;
+  background-color: #4c334d;
+  border: #2b2d42 solid 3px;
+  border-radius: 10px;
+  width: 150px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.turn-teller h3 {
+  color: #ffdb56;
+  margin: 0;
+}
+
+.screen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.7rem;
+  padding-bottom: 1rem;
+}
+
+.map {
+  display: grid;
+  background-color: rgba(178, 227, 255, 70%);
+  border-radius: 15px;
+  margin: 0 60px;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+}
+
+#screen-1 {
+  margin-left: 0;
+}
+
+#screen-2 {
+  margin-right: 0;
+}
+
+.map grid {
+  display: flex;
+  background-color: rgba(178, 227, 255, 70%);
+  cursor: crosshair;
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  filter: blur(0px);
+  justify-content: center;
+  align-items: center;
+  border: white solid 0.3px;
+}
+
+.map grid:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+#grid-1 {
+  border-top-left-radius: 12px;
+}
+
+#grid-10 {
+  border-top-right-radius: 12px;
+}
+
+#grid-91 {
+  border-bottom-left-radius: 12px;
+}
+
+#grid-100 {
+  border-bottom-right-radius: 12px;
+}
+
+.map .hit {
+  background-color: #ef233c;
+}
+
+div .ship-start {
+  border-top-left-radius: 25px !important;
+  border-bottom-left-radius: 25px !important;
+  border-right: none;
+  background-color: #2b2d42;
+}
+
+div .ship {
+  background-color: #2b2d42;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+
+div .ship-end {
+  border-top-right-radius: 25px !important;
+  border-bottom-right-radius: 25px !important;
+  border-left: none;
+  background-color: #2b2d42;
+}
+
+div .ship-start-vertical {
+  border-top-left-radius: 25px !important;
+  border-top-right-radius: 25px !important;
+  border-bottom: none;
+  background-color: #2b2d42;
+}
+
+div .ship-vertical {
+  background-color: #2b2d42;
+  border-top: 0;
+  border-bottom: 0;
+  border-radius: 0;
+}
+
+div .ship-end-vertical {
+  border-bottom-right-radius: 25px !important;
+  border-bottom-left-radius: 25px !important;
+  border-top: none;
+  background-color: #2b2d42;
+}
