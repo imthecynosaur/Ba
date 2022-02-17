@@ -35,9 +35,6 @@ gridElemnts.forEach((element) => {
 
 
 
-
-
-
 /*---------------------------------DRAW-FUNCTION--------------------------------------*/
 
 const drawFunc = function(gridId, shipID) {
@@ -348,6 +345,10 @@ const ships = document.querySelectorAll('.shipp');
 ships.forEach(ship => {
     ship.addEventListener('dragstart', event => {
         event.dataTransfer.setData('text/plain', `${ship.id}`);
-    })
+    });
+
+    ship.addEventListener('dblclick', () => {
+        console.log('db clicked');
+    } )
 })
 

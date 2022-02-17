@@ -11,32 +11,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="arrange-phase">
-      <div class="arrange-section">
-        <section class="map-section">
-          <h3>Please place your ships on the map</h3>
-          <div class="map"></div>
-        </section>
-        <div class="control-btns">
-          <img src="./Assets/rotate.png" alt="rotate the ship" id="rotate-right-btn" class="rotate-btn">
-          <img src="./Assets/delete.png" alt="remove the ship" id="delete-btn">
-          <img src="./Assets/rotate.png" alt="rotate the ship" id="rotate-left-btn" class="rotate-btn">
-        </div>
-        <div class="ships">
-          <div class="shipp" id="number-1" draggable="true"></div>
-          <div class="shipp" id="number-2" draggable="true"></div>
-          <div class="shipp" id="number-3" draggable="true"></div>
-          <div class="shipp" id="number-4" draggable="true"></div>
-        </div>
-        <div class="arrange-btns">
-          <button id="cancel">Cancel</button>
-          <button id="start">Start</button>
-        </div>
+</head>
+  <template class="arrange-phase">
+    <div class="arrange-section">
+      <section class="map-section">
+        <h3>Please place your ships on the map</h3>
+        <div class="map"></div>
+      </section>
+      <div class="control-btns">
+        <img src="./Assets/rotate.png" alt="rotate the ship" id="rotate-right-btn" class="rotate-btn">
+        <img src="./Assets/delete.png" alt="remove the ship" id="delete-btn">
+        <img src="./Assets/rotate.png" alt="rotate the ship" id="rotate-left-btn" class="rotate-btn">
       </div>
-      
-    </div>
+      <div class="ships">
+        <div class="shipp" id="number-1" draggable="true"></div>
+        <div class="shipp" id="number-2" draggable="true"></div>
+        <div class="shipp" id="number-3" draggable="true"></div>
+        <div class="shipp" id="number-4" draggable="true"></div>
+      </div>
+      <div class="arrange-btns">
+        <button id="cancel">Cancel</button>
+        <button id="start">Start</button>
+      </div>
+    </div> 
+  </template>
+  <body>
     <header>
       <div class="logo">
         <div onclick="location.href='#';" class="logo-pic"></div>
