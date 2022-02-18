@@ -59,7 +59,8 @@
   border: white solid 0.3px;
 }
 
-.map grid:hover {
+.map grid:hover,
+.map .highlight {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -83,21 +84,21 @@
   background-color: #ef233c;
 }
 
-div .ship-start {
+div .ship-start-horizontal {
   border-top-left-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
   border-right: none;
   background-color: #2b2d42;
 }
 
-div .ship {
+div .ship-horizontal {
   background-color: #2b2d42;
   border-left: 0;
   border-right: 0;
   border-radius: 0;
 }
 
-div .ship-end {
+div .ship-end-horizontal {
   border-top-right-radius: 25px !important;
   border-bottom-right-radius: 25px !important;
   border-left: none;

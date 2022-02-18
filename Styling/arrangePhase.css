@@ -83,6 +83,7 @@ h3 {
 .ships {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
 
@@ -92,6 +93,11 @@ h3 {
   border-radius: 25px;
   background-color: #2b2d42;
   margin: 0 30px;
+}
+
+.horizontal {
+  width: 90px;
+  height: 30px;
 }
 
 .shipp:hover,
@@ -104,8 +110,18 @@ h3 {
   height: 60px;
 }
 
+#number-1.horizontal {
+  width: 60px;
+  height: 30px;
+}
+
 #number-4 {
   height: 120px;
+}
+
+#number-4.horizontal {
+  width: 120px;
+  height: 30px;
 }
 
 .arrange-btns {
