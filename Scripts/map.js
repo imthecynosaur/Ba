@@ -5,7 +5,6 @@ export class Map {
         this.hostElement = hostElement;
         this.ships = [];
         this.createGrid();
-        this.createDropZone();
     }
 
     createGrid(){
@@ -31,6 +30,7 @@ export class Map {
             event.preventDefault();
             event.target.classList.remove('highlight');
             if (this.createShip(this.currentShipId, this.currentShipDirection, this.currentShipLenght, +event.target.id.split("-")[1])){
+                this.ships[this.ships.length-1].render(this.hostElement);
                 this.currentShip.style.display = 'none';
             }
         })
@@ -45,27 +45,23 @@ export class Map {
 
     createShip(shipId, shipDirection, shipLenght, gridId){
         const newShip = new Ship(shipLenght, shipDirection, shipId)
-        this.ships.push(newShip);
         if(newShip.setShipPosition(gridId) == false){
-            this.ships.pop();
             return false;
         }
         for(const ship of this.ships){
-            if(ship.id != newShip.id){
-                for (const position of ship.position) {
-                    for (const Position of newShip.position) {
-                        if (position == Position){
-                            console.log('shit');
-                            this.ships.pop();
-                            return false;
-                        }
+            for (const position of ship.position) {
+                for (const Position of newShip.position) {
+                    if (position == Position){
+                        console.log('loaded with shit');
+                        return false;
                     }
                 }
             }
         }
-        newShip.render(this.hostElement);
+        this.ships.push(newShip);
+        // newShip.render(this.hostElement);
         return true;
     }
 
-    
+
 }

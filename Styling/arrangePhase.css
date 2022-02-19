@@ -13,7 +13,7 @@
 h3 {
   font-family: "Redressed", cursive;
   font-size: x-large;
-  margin-top: 0;
+  margin: 0;
 }
 
 .arrange-section {
@@ -33,6 +33,13 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#timer {
+  font-size: 2rem;
+  margin: 10px 0;
+  font-family: "Redressed", cursive;
+  color: #ef233c;
 }
 
 #arrange-map {
